@@ -14,7 +14,7 @@ import { format, subMonths } from "date-fns"
 import { CalendarIcon, Download, BarChart2, AlertCircle } from "lucide-react"
 import { useMeter } from "@/context/meter-context"
 import { useRouter } from "next/navigation"
-
+import * as api from "@/context/Api_Url"
 // Define the data structure as requested
 interface MeterReading {
   id: number
@@ -26,14 +26,13 @@ interface MeterReading {
 }
 
 // API endpoint for meter readings
-const METER_READINGS_API = `${process.env.NEXT_PUBLIC_API_URL}/meter-readings`
 
 // Function to fetch meter readings from API
 const fetchMeterReadings = async (meterId: string): Promise<MeterReading[] | null> => {
   try {
     // In a real app, you would call your API with the meter ID
     // For now, we'll simulate an API call with a delay
-    /*const response = await API.MeterUnitsData(meterId)
+    const response = await api.MeterUnitsData(meterId)
     if(response.status){
       var transformedMeterUnits = response.data.map((x) => {
         id: x.id,
@@ -44,7 +43,7 @@ const fetchMeterReadings = async (meterId: string): Promise<MeterReading[] | nul
         timeValue: x.timeValue,
       })
       return transformedMeterUnits || null
-    }*/
+    }
     // if (!response.ok) throw new Error(`Failed to fetch meter readings: ${response.status}`)
     // return await response.json()
 
