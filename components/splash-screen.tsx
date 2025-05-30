@@ -11,7 +11,7 @@ export default function SplashScreen() {
   useEffect(() => {
     // Start border animation after 3 seconds
     const borderAnimationTimer = setTimeout(() => {
-      setShowBorderAnimation(true)
+      setShowBorderAnimation(false)
     }, 3000)
 
     // Start zoom out animation after 9 seconds (1 second before redirect)
@@ -37,7 +37,7 @@ export default function SplashScreen() {
       {/* SEMS text with border animation - reduced font size */}
       <div className="absolute inset-0 flex items-center justify-center">
         <h3
-          className={`text-white text-5xl font-bold font-tesla tracking-widest relative ${showBorderAnimation ? "animate-border-transition" : ""}`}
+          className={`text-white text-4xl font-bold font-tesla tracking-widest relative ${showBorderAnimation ? "animate-border-transition" : ""}`}
         >
           SEMS
         </h3>
