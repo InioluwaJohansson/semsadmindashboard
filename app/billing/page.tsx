@@ -570,7 +570,7 @@ export default function BillingPage() {
                     </div>
                     <div className="flex items-center space-x-4">
                       <div className="text-sm text-muted-foreground">{bill.consumption}</div>
-                      <div className="font-medium">{bill.amount.toLocaleString("en-US")}</div>
+                      <div className="font-medium">{formatCurrency(bill.amount)}</div>
                       <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
                         {bill.status}
                       </Badge>
