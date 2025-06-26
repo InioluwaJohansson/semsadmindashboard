@@ -108,12 +108,6 @@ export default function BillingPage() {
     // Clean up interval on component unmount
     return () => clearInterval(intervalId)*/
   }, [])
-
-  function formatAmount(value: number | string): string {
-    const num = typeof value === "number" ? value : parseFloat(value);
-    if (isNaN(num)) return "0";
-    return num.toLocaleString("en-US");
-  }
   // Validate form fields
   const validateForm = () => {
     const errors = {
