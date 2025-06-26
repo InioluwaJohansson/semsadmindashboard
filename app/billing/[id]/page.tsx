@@ -56,11 +56,6 @@ function DownloadSuccessOverlay({ show, onClose }) {
   )
 }
 
-function formatAmount(value: number | string): string {
-  const num = typeof value === "number" ? value : parseFloat(value);
-  if (isNaN(num)) return "0";
-  return num.toLocaleString("en-US");
-}
 export default function BillingDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter()
   const { billingHistory, selectedMeter } = useMeter()
@@ -268,7 +263,7 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
                     <span className="text-sm">{item.category}</span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <span className="text-sm">{item.value} kWh</span>
+                    <span className="text-sm">{item.value.toFixed(2)} kWh</span>
                     <div className="w-24 bg-muted rounded-full h-2 overflow-hidden">
                       <div className="bg-primary h-full" style={{ width: `${item.percentage}%` }}></div>
                     </div>
