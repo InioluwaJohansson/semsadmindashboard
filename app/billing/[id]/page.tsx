@@ -60,7 +60,12 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
   const { billingHistory, selectedMeter } = useMeter()
   const [billing, setBilling] = useState<any>(null)
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false)
-
+  
+  function formatAmount(value: number | string): string {
+    const num = typeof value === "number" ? value : parseFloat(value);
+    if (isNaN(num)) return "0";
+    return num.toLocaleString("en-US");
+  }
   useEffect(() => {
     // Find the billing data with the matching ID
     const foundBilling = billingHistory.find((bill) => bill.id === params.id)
@@ -236,11 +241,11 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Rate per kWh</span>
-              <span className="text-sm">{billing.ratePerKwh}</span>
+              <span className="text-sm">{formatAmount(billing.ratePerKwh)}</span>
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Base charge</span>
-              <span className="text-sm">{billing.baseCharge}</span>
+              <span className="text-sm">{formatAmount((billing.baseCharge)}</span>
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Taxes</span>
@@ -248,7 +253,7 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
             </div>
             <div className="flex justify-between items-center pt-2 border-t">
               <span className="text-sm font-medium">Total</span>
-              <span className="text-sm font-medium">{billing.amount}</span>
+              <span className="text-sm font-medium">{formatAmount(billing.amount)}</span>
             </div>
           </div>
 
