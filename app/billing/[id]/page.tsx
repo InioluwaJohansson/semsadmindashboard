@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import jsPDF from "jspdf"
 import autoTable from "jspdf-autotable"
 import { useMeter } from "@/context/meter-context"
+import * as api from "@/context/Api_Url"
 
 // Download Success Overlay component with PDF animation
 function DownloadSuccessOverlay({ show, onClose }) {
@@ -85,15 +86,15 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
     }).format(amount)
   }
   // Handle PDF download
-  const handleDownloadPDF = () => {
+  const handleDownloadPDF = async () => {
     // Create a new PDF document
     const doc = new jsPDF()
-
+    var user = await api.getCustomerById(localStorage.getItem("userId").ToInt)
     // Update the PDF generation to use Naira
     // User details
-    const userName = "Inioluwa Johansson"
-    const userEmail = "inioluwa.makinde10@gmail.com"
-    const userPhone = "+234 812 345 6789"
+    const userName = user.firstName + " " + user.lastName
+    const userEmail = user.email
+    const userPhone = user.phoneNumber
     const meterId = selectedMeter.name
     const userAddress = `${selectedMeter.numberLine} ${selectedMeter.street}, ${selectedMeter.city}, ${selectedMeter.state}, Nigeria`
 
@@ -251,7 +252,7 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Taxes</span>
-              <span className="text-sm">{formatCurrency(billing.taxes)}</span>
+              <span className="text-sm">{billing.taxes}</span>
             </div>
             <div className="flex justify-between items-center pt-2 border-t">
               <span className="text-sm font-medium">Total</span>
