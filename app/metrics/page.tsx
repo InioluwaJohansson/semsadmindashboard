@@ -967,7 +967,6 @@ export default function MetricsPage() {
                   data={voltageData}
                   dataKey="voltage"
                   color="var(--color-voltage)"
-                  domain={[220, 240]}
                 />
               </ChartContainer>
             </ScrollableChart>
