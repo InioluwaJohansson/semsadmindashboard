@@ -797,9 +797,9 @@ export default function MetricsPage() {
     fetchAllMeterReadings()
 
     // Set up interval for polling
-    const intervalId = setInterval(() => {
-      fetchAllMeterReadings()
-    }, 10000) // 10 seconds
+    // const intervalId = setInterval(() => {
+    //   fetchAllMeterReadings()
+    // }, 10000) // 10 seconds
 
     // Clean up interval on unmount
     return () => clearInterval(intervalId)
