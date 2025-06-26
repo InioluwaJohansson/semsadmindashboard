@@ -1,5 +1,3 @@
 export function formatAmount(value: number | string): string {
-  const num = typeof value === "number" ? value : parseFloat(value);
-  if (isNaN(num)) return "0";
-  return num.toLocaleString("en-US");
+  return isNaN(value) ? "0" : value.toLocaleString("en-US");
 }
