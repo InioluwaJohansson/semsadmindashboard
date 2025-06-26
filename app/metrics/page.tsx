@@ -55,7 +55,7 @@ const fetchMeterReadings = async (meterId: number): Promise<MeterReading[] | nul
     await new Promise((resolve) => setTimeout(resolve, 500))
 
     // For demo purposes, generate random data
-    return generateRandomMeterReadings(meterId)
+    return null
   } catch (error) {
     console.error("Error fetching meter readings:", error)
     return null
@@ -270,7 +270,7 @@ const generateDummyDataForDownload = (metricType, startDate, endDate, timeFrame,
   const end = endDate ? new Date(endDate) : new Date() // Default to now
 
   // Generate random readings for the date range
-  const readings = generateRandomMeterReadings(meterId)
+  const readings = fetchMeterReadings(meterId)
 
   // Filter by date range
   const filteredReadings = readings.filter((reading) => reading.timeValue >= start && reading.timeValue <= end)
