@@ -42,7 +42,7 @@ const fetchMeterReadings = async (meterId: number): Promise<MeterReading[] | nul
           currentValue: x.currentValue,
           consumptionValue: x.consumptionValue,
           electricityCost: x.electricityCost,
-          timeValue: x.timeValue,
+          timeValue: new Date(x.timeValue),
         };
       });
 
@@ -797,9 +797,9 @@ export default function MetricsPage() {
     fetchAllMeterReadings()
 
     // Set up interval for polling
-    // const intervalId = setInterval(() => {
-    //   fetchAllMeterReadings()
-    // }, 10000) // 10 seconds
+    const intervalId = setInterval(() => {
+      fetchAllMeterReadings()
+    }, 10000) // 10 seconds
 
     // Clean up interval on unmount
     return () => clearInterval(intervalId)
