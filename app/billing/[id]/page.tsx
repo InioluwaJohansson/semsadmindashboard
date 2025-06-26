@@ -55,17 +55,17 @@ function DownloadSuccessOverlay({ show, onClose }) {
   )
 }
 
+function formatAmount(value: number | string): string {
+  const num = typeof value === "number" ? value : parseFloat(value);
+  if (isNaN(num)) return "0";
+  return num.toLocaleString("en-US");
+}
 export default function BillingDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter()
   const { billingHistory, selectedMeter } = useMeter()
   const [billing, setBilling] = useState<any>(null)
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false)
   
-  function formatAmount(value: number | string): string {
-    const num = typeof value === "number" ? value : parseFloat(value);
-    if (isNaN(num)) return "0";
-    return num.toLocaleString("en-US");
-  }
   useEffect(() => {
     // Find the billing data with the matching ID
     const foundBilling = billingHistory.find((bill) => bill.id === params.id)
