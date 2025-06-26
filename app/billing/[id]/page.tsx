@@ -245,7 +245,7 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Base charge</span>
-              <span className="text-sm">{formatAmount((billing.baseCharge)}</span>
+              <span className="text-sm">{formatAmount(billing.baseCharge)}</span>
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Taxes</span>
