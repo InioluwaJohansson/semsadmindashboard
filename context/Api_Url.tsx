@@ -334,9 +334,9 @@ export const getMetersByUserId = async (userId: number): Promise<MeterData[]> =>
     throw new Error("Failed to fetch all meters")
   }
 }
-export const MeterUnitsData = async (userId: number): Promise<MeterData[]> => {
+export const MeterUnitsData = async (meterId: number): Promise<MeterData[]> => {
   try {
-    const response = await axios.get<MeterData[]>(`${API_BASE_URL}SEMS/Data/MeterUnitsData${userId}`)
+    const response = await axios.get<MeterData[]>(`${API_BASE_URL}SEMS/Data/MeterUnitsData?Meterid=${meterId}`)
     return response.data
   } catch (error) {
     console.error("Error fetching all meters:", error)
