@@ -264,13 +264,13 @@ const getFullTimeFrameLabel = (timeFrame) => {
 }
 
 // Function to generate dummy data for download
-const generateDummyDataForDownload = (metricType, startDate, endDate, timeFrame, meterId) => {
+const generateDummyDataForDownload = async (metricType, startDate, endDate, timeFrame, meterId) => {
   const data = []
   const start = startDate ? new Date(startDate) : new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) // Default to 1 week ago
   const end = endDate ? new Date(endDate) : new Date() // Default to now
 
   // Generate random readings for the date range
-  const readings = fetchMeterReadings(meterId)
+  const readings = await fetchMeterReadings(meterId)
 
   // Filter by date range
   const filteredReadings = readings.filter((reading) => reading.timeValue >= start && reading.timeValue <= end)
@@ -854,8 +854,8 @@ export default function MetricsPage() {
   ])
 
   // Handle download
-  const handleDownload = () => {
-    const data = generateDummyDataForDownload(metricType, startDate, endDate, downloadTimeFrame, selectedMeter.id)
+  const handleDownload = async () => {
+    const data = await generateDummyDataForDownload(metricType, startDate, endDate, downloadTimeFrame, selectedMeter.id)
     const fileName = `${metricType === "consumption" ? "Electricity_Consumption" : "Electricity_Cost"}_${downloadTimeFrame}`
     downloadCSV(data, fileName, metricType, startDate, endDate, downloadTimeFrame, selectedMeter.name, () => {
       setShowSuccessOverlay(true)
