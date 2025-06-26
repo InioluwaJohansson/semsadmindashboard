@@ -226,7 +226,7 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
         </CardHeader>
         <CardContent>
           <div className="flex justify-between">
-            <div className="text-3xl font-bold">{billing.amount}</div>
+            <div className="text-3xl font-bold">{formatAmount(billing.amount)}</div>
             <div>
               <Button variant="outline" className="flex" onClick={handleDownloadPDF}>
                 <FileText className="h-4 w-4 mr-2" />
