@@ -1,4 +1,8 @@
-export function formatAmount(value: number | string): string {
-  console.log(value.toLocaleString("en-US"))
-  return isNaN(value) ? "0" : value.toLocaleString("en-US");
-}
+export function formatAmount(amount: number) => {
+    return new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount)
+  }
