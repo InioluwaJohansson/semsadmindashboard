@@ -66,7 +66,14 @@ export default function BillingPage() {
   const [baseCharge, setBaseCharge] = useState<number>(0)
   const [taxes, setTaxes] = useState<number>(0)
   const [isLoading, setIsLoading] = useState(true)
-
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount)
+  }
   // Calculate total amount whenever units change
   useEffect(() => {
     if (unitPrice && baseCharge && taxes) {
@@ -390,11 +397,11 @@ export default function BillingPage() {
                 <div className="bg-muted/30 p-3 rounded-lg">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm">Price per unit</span>
-                    <span className="text-sm font-medium">₦{unitPrice.toFixed(2).toLocaleString("en-US")}</span>
+                    <span className="text-sm font-medium">₦{formatCurrency(unitPrice.toFixed(2))}</span>
                   </div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm">Base Charge</span>
-                    <span className="text-sm font-medium">₦{baseCharge.toFixed(2).toLocaleString("en-US")}</span>
+                    <span className="text-sm font-medium">₦{formatCurrency(baseCharge.toFixed(2))}</span>
                   </div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm">Taxes</span>
@@ -403,7 +410,7 @@ export default function BillingPage() {
                   <Separator className="my-2" />
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium">Total Amount</span>
-                    <span className="text-sm font-bold">₦{totalAmount.toFixed(2).toLocaleString("en-US")}</span>
+                    <span className="text-sm font-bold">₦{formatCurrency(totalAmount.toFixed(2))}</span>
                   </div>
                 </div>
 
@@ -516,7 +523,7 @@ export default function BillingPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-bold">{formatAmount(currentBilling?.amount.toLocaleString("en-US"))}</div>
+          <div className="text-3xl font-bold">{formatCurrency(currentBilling?.amount)}</div>
           <div className="mt-4 p-3 bg-muted/50 rounded-lg">
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm font-medium">Total Units</span>
@@ -524,15 +531,15 @@ export default function BillingPage() {
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Rate per kWh</span>
-              <span className="text-sm">{currentBilling?.rate.toLocaleString("en-US")}</span>
+              <span className="text-sm">{formatCurrency(currentBilling?.rate)}</span>
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Base charge</span>
-              <span className="text-sm">{currentBilling?.baseCharge.toLocaleString("en-US")}</span>
+              <span className="text-sm">{formatCurrency(currentBilling?.baseCharge)}</span>
             </div>
             <div className="flex justify-between items-center pt-2 border-t">
               <span className="text-sm font-medium">Total</span>
-              <span className="text-sm font-medium">{currentBilling?.amount.toLocaleString("en-US")}</span>
+              <span className="text-sm font-medium">{formatCurrency(currentBilling?.amount)}</span>
             </div>
           </div>
         </CardContent>
