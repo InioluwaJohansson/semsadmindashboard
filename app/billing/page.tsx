@@ -108,6 +108,11 @@ export default function BillingPage() {
     return () => clearInterval(intervalId)*/
   }, [])
 
+  function formatAmount(value: number | string): string {
+    const num = typeof value === "number" ? value : parseFloat(value);
+    if (isNaN(num)) return "0";
+    return num.toLocaleString("en-US");
+  }
   // Validate form fields
   const validateForm = () => {
     const errors = {
@@ -394,7 +399,7 @@ export default function BillingPage() {
                   </div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm">Base Charge</span>
-                    <span className="text-sm font-medium">₦{baseCharge.toFixed(2)}</span>
+                    <span className="text-sm font-medium">₦{formatAmount(baseCharge.toFixed(2))}</span>
                   </div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm">Taxes</span>
@@ -403,7 +408,7 @@ export default function BillingPage() {
                   <Separator className="my-2" />
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium">Total Amount</span>
-                    <span className="text-sm font-bold">₦{totalAmount.toFixed(2)}</span>
+                    <span className="text-sm font-bold">₦{formatAmount(totalAmount.toFixed(2))}</span>
                   </div>
                 </div>
 
@@ -524,15 +529,15 @@ export default function BillingPage() {
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Rate per kWh</span>
-              <span className="text-sm">{currentBilling?.rate}</span>
+              <span className="text-sm">{formatAmount(currentBilling?.rate)}</span>
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Base charge</span>
-              <span className="text-sm">{currentBilling?.baseCharge}</span>
+              <span className="text-sm">{formatAmount(currentBilling?.baseCharge)}</span>
             </div>
             <div className="flex justify-between items-center pt-2 border-t">
               <span className="text-sm font-medium">Total</span>
-              <span className="text-sm font-medium">{currentBilling?.amount}</span>
+              <span className="text-sm font-medium">{formatAmount(currentBilling?.amount)}</span>
             </div>
           </div>
         </CardContent>
@@ -564,7 +569,7 @@ export default function BillingPage() {
                     </div>
                     <div className="flex items-center space-x-4">
                       <div className="text-sm text-muted-foreground">{bill.consumption}</div>
-                      <div className="font-medium">{bill.amount}</div>
+                      <div className="font-medium">{formatAmount(bill.amount)}</div>
                       <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
                         {bill.status}
                       </Badge>
@@ -674,11 +679,11 @@ export default function BillingPage() {
               <div className="bg-muted/30 p-3 rounded-lg">
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm">Price per unit</span>
-                  <span className="text-sm font-medium">₦{unitPrice.toFixed(2)}</span>
+                  <span className="text-sm font-medium">₦{formatAmount(unitPrice.toFixed(2))}</span>
                 </div>
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm">Base Charge</span>
-                  <span className="text-sm font-medium">₦{baseCharge.toFixed(2)}</span>
+                  <span className="text-sm font-medium">₦{formatAmount(baseCharge.toFixed(2))}</span>
                 </div>
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm">Taxes</span>
@@ -687,7 +692,7 @@ export default function BillingPage() {
                 <Separator className="my-2" />
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium">Total Amount</span>
-                  <span className="text-sm font-bold">₦{totalAmount.toFixed(2)}</span>
+                  <span className="text-sm font-bold">₦{formatAmount(totalAmount.toFixed(2))}</span>
                 </div>
               </div>
 
