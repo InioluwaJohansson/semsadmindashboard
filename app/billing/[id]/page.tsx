@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { formatAmount } from "@/components/ui/formatAmount"
 import { ArrowLeft, Zap, Calendar, Clock, FileText } from "lucide-react"
 import { useRouter } from "next/navigation"
 import jsPDF from "jspdf"
@@ -77,7 +76,14 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
       </div>
     )
   }
-
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount)
+  }
   // Handle PDF download
   const handleDownloadPDF = () => {
     // Create a new PDF document
@@ -222,7 +228,7 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
         </CardHeader>
         <CardContent>
           <div className="flex justify-between">
-            <div className="text-3xl font-bold">{formatAmount(billing.amount)}</div>
+            <div className="text-3xl font-bold">{formatCurrency(billing.amount)}</div>
             <div>
               <Button variant="outline" className="flex" onClick={handleDownloadPDF}>
                 <FileText className="h-4 w-4 mr-2" />
@@ -237,19 +243,19 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Rate per kWh</span>
-              <span className="text-sm">{formatAmount(billing.ratePerKwh)}</span>
+              <span className="text-sm">{formatCurrency(billing.ratePerKwh)}</span>
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Base charge</span>
-              <span className="text-sm">{formatAmount(billing.baseCharge)}</span>
+              <span className="text-sm">{formatCurrency(billing.baseCharge)}</span>
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Taxes</span>
-              <span className="text-sm">{billing.taxes}</span>
+              <span className="text-sm">{formatCurrency(billing.taxes)}</span>
             </div>
             <div className="flex justify-between items-center pt-2 border-t">
               <span className="text-sm font-medium">Total</span>
-              <span className="text-sm font-medium">{formatAmount(billing.amount)}</span>
+              <span className="text-sm font-medium">{formatCurrency(billing.amount)}</span>
             </div>
           </div>
 
