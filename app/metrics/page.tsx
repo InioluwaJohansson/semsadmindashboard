@@ -725,7 +725,7 @@ export default function MetricsPage() {
     if (!readings || readings.length === 0) return
 
     // Update consumption data
-    setIsLoadingConsumption(true)
+    //setIsLoadingConsumption(true)
     try {
       const aggregatedConsumptionData = filterAndAggregateData(readings, consumptionTimeFrame)
       setConsumptionData(aggregatedConsumptionData)
@@ -739,7 +739,7 @@ export default function MetricsPage() {
     }
 
     // Update voltage data
-    setIsLoadingVoltage(true)
+    //setIsLoadingVoltage(true)
     try {
       const aggregatedVoltageData = filterAndAggregateData(readings, voltageTimeFrame)
       setVoltageData(aggregatedVoltageData)
@@ -753,7 +753,7 @@ export default function MetricsPage() {
     }
 
     // Update current data
-    setIsLoadingCurrent(true)
+    //setIsLoadingCurrent(true)
     try {
       const aggregatedCurrentData = filterAndAggregateData(readings, currentTimeFrame)
       setCurrentData(aggregatedCurrentData)
@@ -767,7 +767,7 @@ export default function MetricsPage() {
     }
 
     // Update cost data
-    setIsLoadingCost(true)
+    //setIsLoadingCost(true)
     try {
       const aggregatedCostData = filterAndAggregateData(readings, costTimeFrame)
       setCostData(aggregatedCostData)
