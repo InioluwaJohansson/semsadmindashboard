@@ -33,6 +33,7 @@ const fetchMeterReadings = async (meterId: number): Promise<MeterReading[] | nul
     // In a real app, you would call your API with the meter ID
     // For now, we'll simulate an API call with a delay
     const response = await api.MeterUnitsData(meterId)
+    console.log(response.data)
     if(response.status){
       var transformedMeterUnits = response.data.map((x) => {
         return {
