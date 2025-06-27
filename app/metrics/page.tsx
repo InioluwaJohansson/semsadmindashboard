@@ -782,6 +782,14 @@ export default function MetricsPage() {
     }
   }
 
+  useEffect(() => {
+    if (localStorage.getItem("id") == null && localStorage.getItem("userName") == null) {
+      setTimeout(() => {
+        router.push("/login")
+      }, 2000)
+    }
+  }, [router])
+
   // Initial data fetch when component mounts or selected meter changes
   useEffect(() => {
     if (selectedMeter) {
