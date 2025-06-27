@@ -141,10 +141,10 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
     doc.text("Consumption Details", 20, 97)
     doc.setFont(undefined, "normal")
 
-    const taxes = `#${billing.taxes}`
-    const baseCharge = `#${billing.baseCharge}`
-    const ratePerKwh = `#${billing.ratePerKwh}`
-    const totalAmount = `#${billing.amount}`
+    const taxes = `${formatCurrency(billing.taxes)}`
+    const baseCharge = `${formatCurrency(billing.baseCharge)}`
+    const ratePerKwh = `${formatCurrency(billing.ratePerKwh)}`
+    const totalAmount = `${formatCurrency(billing.amount)}`
     // Create a table for consumption details
     const consumptionBody = [
       ["Total Consumption", billing.consumption],
@@ -176,7 +176,7 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
     doc.text("Usage Breakdown", 20, finalY1 + 17)
     doc.setFont(undefined, "normal")
 
-    const usageBody = billing.usageBreakdown.map((item) => [item.category, item.value + " kWh", item.percentage + "%"])
+    const usageBody = billing.usageBreakdown.map((item) => [item.category, item.value + " kWh", (item.percentage || 0.00) + "%"])
 
     // Use autoTable directly again
     autoTable(doc, {
