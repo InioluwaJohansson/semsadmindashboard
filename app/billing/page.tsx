@@ -680,11 +680,11 @@ export default function BillingPage() {
               <div className="bg-muted/30 p-3 rounded-lg">
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm">Price per unit</span>
-                  <span className="text-sm font-medium">₦{formatAmount(unitPrice.toFixed(2))}</span>
+                  <span className="text-sm font-medium">₦{formatCurrency(unitPrice.toFixed(2))}</span>
                 </div>
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm">Base Charge</span>
-                  <span className="text-sm font-medium">₦{formatAmount(baseCharge.toFixed(2))}</span>
+                  <span className="text-sm font-medium">₦{formatCurrency(baseCharge.toFixed(2))}</span>
                 </div>
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm">Taxes</span>
@@ -693,7 +693,7 @@ export default function BillingPage() {
                 <Separator className="my-2" />
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium">Total Amount</span>
-                  <span className="text-sm font-bold">₦{formatAmount(totalAmount.toFixed(2))}</span>
+                  <span className="text-sm font-bold">₦{formatCurrency(totalAmount.toFixed(2))}</span>
                 </div>
               </div>
 
