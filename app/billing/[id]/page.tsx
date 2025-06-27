@@ -61,6 +61,14 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
   const { billingHistory, selectedMeter } = useMeter()
   const [billing, setBilling] = useState<any>(null)
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false)
+
+  useEffect(() => {
+    if (localStorage.getItem("id") == null && localStorage.getItem("userName") == null) {
+      setTimeout(() => {
+        router.push("/login")
+      }, 2000)
+    }
+  }, [router])
   
   useEffect(() => {
     // Find the billing data with the matching ID
