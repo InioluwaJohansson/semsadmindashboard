@@ -280,9 +280,9 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
                   <div className="flex items-center space-x-4">
                     <span className="text-sm">{item.value.toFixed(2)} kWh</span>
                     <div className="w-24 bg-muted rounded-full h-2 overflow-hidden">
-                      <div className="bg-primary h-full" style={{ width: `${item.percentage}%` }}></div>
+                      <div className="bg-primary h-full" style={{ width: `${item.percentage || 0.00}%` }}></div>
                     </div>
-                    <span className="text-sm">{item.percentage}%</span>
+                    <span className="text-sm">{(item.percentage || 0).toFixed(2)}%</span>
                   </div>
                 </div>
               ))}
