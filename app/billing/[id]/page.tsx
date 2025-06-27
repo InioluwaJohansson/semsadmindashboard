@@ -282,7 +282,7 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
                     <div className="w-24 bg-muted rounded-full h-2 overflow-hidden">
                       <div className="bg-primary h-full" style={{ width: `${item.percentage || 0.00}%` }}></div>
                     </div>
-                    <span className="text-sm">{(item.percentage || 0).toFixed(2)}%</span>
+                    <span className="text-sm">{(item.percentage || 0)}%</span>
                   </div>
                 </div>
               ))}
