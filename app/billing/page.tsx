@@ -66,12 +66,20 @@ export default function BillingPage() {
   const [taxes, setTaxes] = useState<number>(0)
   const [isLoading, setIsLoading] = useState(true)
   const formatCurrency = (amount: number) => {
+    if (amount === null || amount === undefined) return "₦0.00";
+
+  const numeric =
+    typeof amount === "number"
+      ? amount
+      : parseFloat(amount.toString().replace(/[^\d.-]/g, ""));
+
+  if (isNaN(numeric)) return "₦0.00";
     return new Intl.NumberFormat("en-NG", {
       style: "currency",
       currency: "NGN",
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    }).format(amount)
+    }).format(numeric)
   }
   // Calculate total amount whenever units change
   useEffect(() => {
