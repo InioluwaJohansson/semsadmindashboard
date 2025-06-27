@@ -152,7 +152,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Total Consumption</div>
-                    <div className="text-2xl font-bold">{usageData.baseLoad + usageData.peakLoad}</div>
+                    <div className="text-2xl font-bold">{usageData.totalConsumption}</div>
                   </div>
                 </div>
               </div>
