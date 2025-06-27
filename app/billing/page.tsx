@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils"
 import { useMeter } from "@/context/meter-context"
 import { ErrorOverlay } from "@/components/error-overlay"
 import { useData } from "@/context/data-context"
+import { useRouter } from "next/navigation"
 import * as API from "@/context/Api_Url"
 
 // Define the API endpoint for purchasing units
@@ -90,6 +91,13 @@ export default function BillingPage() {
     }
   }, [units, unitPrice, baseCharge, taxes])
 
+  useEffect(() => {
+    if (localStorage.getItem("id") == null && localStorage.getItem("userName") == null) {
+      setTimeout(() => {
+        router.push("/login")
+      }, 2000)
+    }
+  }, [router])
   // Fetch unit price data
   useEffect(() => {
     const fetchPriceData = async () => {
