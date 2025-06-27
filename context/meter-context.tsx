@@ -448,7 +448,7 @@ export function MeterProvider({ children }: { children: React.ReactNode }) {
           totalLoad > 0 ? Math.round(((peakLoadData + offPeakLoadData) / totalLoad) * 100) : 0
 
         return {
-          totalConsumption: `${totalConsumptionData.toFixed(2)} kWh`,
+          totalConsumption: `${(peakLoadData+offPeakLoadData).toFixed(2)} kWh`,
           baseLoad: `${baseLoadData.toFixed(1)} kWh`,
           peakLoad: `${peakLoadData.toFixed(1)} kWh`,
           offPeakLoad: `${offPeakLoadData.toFixed(1)} kWh`,
