@@ -78,12 +78,20 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
     )
   }
   const formatCurrency = (amount: number) => {
+    if (amount === null || amount === undefined) return "₦0.00";
+
+  const numeric =
+    typeof amount === "number"
+      ? amount
+      : parseFloat(amount.toString().replace(/[^\d.-]/g, ""));
+
+  if (isNaN(numeric)) return "₦0.00";
     return new Intl.NumberFormat("en-NG", {
       style: "currency",
       currency: "NGN",
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    }).format(amount)
+    }).format(numeric)
   }
   // Handle PDF download
   const handleDownloadPDF = async () => {
@@ -252,7 +260,7 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Taxes</span>
-              <span className="text-sm">{billing.taxes}</span>
+              <span className="text-sm">{formatCurrency(billing.taxes)}</span>
             </div>
             <div className="flex justify-between items-center pt-2 border-t">
               <span className="text-sm font-medium">Total</span>
