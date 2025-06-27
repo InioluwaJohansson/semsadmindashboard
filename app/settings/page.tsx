@@ -192,6 +192,13 @@ export default function SettingsPage() {
     }
   }, [selectedMeter])
 
+  useEffect(() => {
+    if (localStorage.getItem("id") == null && localStorage.getItem("userName") == null) {
+      setTimeout(() => {
+        router.push("/login")
+      }, 2000)
+    }
+  }, [router])
   // Update useEffect that runs when selected meter changes to also update meter ID
   useEffect(() => {
     if (selectedMeter) {
