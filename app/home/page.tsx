@@ -128,7 +128,6 @@ export default function HomePage() {
                 <Activity className="h-5 w-5 text-primary" />
                 Current Usage
               </CardTitle>
-              <CardDescription>Today&apos;s consumption</CardDescription>
             </div>
             <div className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium flex items-center">
               Live
