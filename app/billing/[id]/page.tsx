@@ -89,7 +89,7 @@ export default function BillingDetailPage({ params }: { params: { id: string } }
   const handleDownloadPDF = async () => {
     // Create a new PDF document
     const doc = new jsPDF()
-    var user = await api.getCustomerById(localStorage.getItem("userId").ToInt)
+    var user = await api.getCustomerById(localStorage.getItem("id"))
     // Update the PDF generation to use Naira
     // User details
     const userName = user.firstName + " " + user.lastName
