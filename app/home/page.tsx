@@ -152,12 +152,8 @@ export default function HomePage() {
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Total Consumption</div>
-                    <div className="text-2xl font-bold">{usageData.totalConsumption}</div>
+                    <div className="text-2xl font-bold">{usageData.baseLoad + usageData.peakLoad}</div>
                   </div>
-                </div>
-                <div className="text-sm px-3 py-1 bg-green-100 text-green-700 rounded-full">
-                  {usageData.comparisonDirection === "down" ? "-" : "+"}
-                  {usageData.comparisonPercentage}% vs. yesterday
                 </div>
               </div>
 
