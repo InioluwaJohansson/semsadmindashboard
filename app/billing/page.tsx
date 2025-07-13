@@ -90,7 +90,7 @@ export default function BillingPage() {
       setTotalAmount(unitCost + taxAmount + baseCharge)
     }
   }, [units, unitPrice, baseCharge, taxes])
-
+  const router = useRouter()
   useEffect(() => {
     if (localStorage.getItem("id") == null && localStorage.getItem("userName") == null) {
       setTimeout(() => {
