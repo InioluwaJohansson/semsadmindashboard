@@ -38,7 +38,7 @@ export default function BillingPage() {
   // Add a ref for scrolling to top
   const topRef = useRef(null)
   const { refreshData } = useData()
-
+  const router = useRouter()
   // Get data directly from the meter context without renaming
   const { selectedMeter, billingHistory, currentBilling } = useMeter()
 
@@ -90,7 +90,7 @@ export default function BillingPage() {
       setTotalAmount(unitCost + taxAmount + baseCharge)
     }
   }, [units, unitPrice, baseCharge, taxes])
-  const router = useRouter()
+  
   useEffect(() => {
     if (localStorage.getItem("id") == null && localStorage.getItem("userName") == null) {
       setTimeout(() => {
